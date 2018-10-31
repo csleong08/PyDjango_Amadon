@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon</title>
+</head>
+<body>
+    <h3>Amadon Store!</h3>
+    <table>
+        <thead>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </thead>
+        {% for item in all_items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.price }}</td>
+            <td>
+                <form action='/buy/{{item.id}}' method='post'>
+                {% csrf_token %}
+                <select name='quantity'>
+                    <option value='0'>0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>
+                <!-- <input type='hidden' name='item_id' value='{{ item.id }}' /> -->
+                <button type='submit'>Buy!</button>
+                <!-- <a href="buy/{{ item.id }}">Buy!</a> -->
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
